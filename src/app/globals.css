@@ -1,6 +1,6 @@
 :root {
 	--max-width: 1100px;
-    --border: 30px;
+    --border: 15px;
     --shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
 
     --bg: black;
@@ -36,6 +36,7 @@ body {
     text-rendering: optimizeSpeed;
     background-color: var(--bg);
     color: var(--text);
+    overflow: hidden;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {

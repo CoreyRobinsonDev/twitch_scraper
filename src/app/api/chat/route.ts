@@ -1,14 +1,15 @@
 import puppeteer from "puppeteer";
-import parseChat from "@/util/parseChat";
+import parseChat from "@/util/functions/parseChat";
 
 export async function GET(req: Request) {
-    // Launch the browser and open a new blank page
+    const { searchParams } = new URL(req.url);
+    const streamer = searchParams.get("streamer");
     const browser = await puppeteer.launch({
         slowMo: 100
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1680, height: 1080});
-    await page.goto("https://twitch.tv/kaicenat");
+    await page.goto(`https://twitch.tv/${streamer}`);
 
     // await chat?.screenshot({
     //     path: `./src/screenshots/${Date.now()}.png`,
@@ -20,6 +21,7 @@ export async function GET(req: Request) {
     );
 
     await browser.close();
+
 
     const output = parseChat(chatHTML);
     console.log(output.messages.raw);
